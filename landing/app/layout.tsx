@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { display, stencil, body, mono, hand } from "./fonts";
-import { SITE, SITE_URL } from "@/lib/site";
+import { AUTHOR, SITE, SITE_URL } from "@/lib/site";
 import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: SITE.title,
   description: SITE.description,
   applicationName: SITE.name,
+  authors: [{ name: AUTHOR.name, url: AUTHOR.github }],
+  creator: AUTHOR.name,
+  publisher: SITE.name,
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",

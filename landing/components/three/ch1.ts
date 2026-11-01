@@ -122,14 +122,19 @@ export async function init(api: Api, ch: Chapter): Promise<ChapterMod> {
   const clock = sec.querySelector<HTMLElement>('[data-clock]')!;
   const hours = sec.querySelector<HTMLElement>('[data-hours]')!;
   const beats = Array.from(sec.querySelectorAll<HTMLElement>('.beats li'));
+  // only touch the DOM when a shown value actually changes
+  let lastClock = '', lastHours = -1, lastBeats = -1;
   const setDom = (p: number) => {
     const mins = Math.round(p * 35 * 60 / 10) * 10; // Sat 10:00 to Sun 21:00
     const total = 10 * 60 + mins;
     const day = total >= 24 * 60 ? 'Sun' : 'Sat';
     const m = total % (24 * 60);
-    clock.textContent = `${day} ${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
-    hours.textContent = String(Math.floor(p * 35));
-    beats.forEach((b, i) => b.classList.toggle('on', p >= 0.02 + i * 0.17));
+    const c = `${day} ${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
+    if (c !== lastClock) { clock.textContent = c; lastClock = c; }
+    const h = Math.floor(p * 35);
+    if (h !== lastHours) { hours.textContent = String(h); lastHours = h; }
+    const on = beats.reduce((n, _b, i) => n + (p >= 0.02 + i * 0.17 ? 1 : 0), 0);
+    if (on !== lastBeats) { beats.forEach((b, i) => b.classList.toggle('on', i < on)); lastBeats = on; }
   };
   if (!gl) { setDom(1); return { update: (p: number) => { setDom(p); } }; }
   await fontsReady();

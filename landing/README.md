@@ -62,6 +62,8 @@ public/
   llms.txt
 ```
 
+Spacing: every gap comes from the scale in `app/globals.css` (`--s-1` to `--s-10`) and the fluid tokens built on it (`--stack`, `--group`, `--scene-pad`, `--section`, `--card-pad`). Motion uses `--dur`, `--dur-slow` and `--ease`. Interactive states that change text (mode copy, plan lists, status lines) share a grid cell or have reserved height, so switching them never moves the page.
+
 How the motion works: every chapter is server-rendered HTML. After first paint, `StoryEngine` loads `three/engine.ts`, which tracks each chapter's scroll progress and lazy-loads that chapter's module when it gets close. All 3D scenes share one WebGL renderer that draws only inside each stage's box (device pixel ratio capped at 1.5, nothing drawn off screen). Every stage has a static SVG version underneath that stays visible until the 3D scene draws its first frame, so if WebGL is missing or slow you still see the scene. With `prefers-reduced-motion`, chapters stop pinning and show their final state.
 
 ## SEO and answer-engine checklist
@@ -71,8 +73,9 @@ How the motion works: every chapter is server-rendered HTML. After first paint, 
 - [x] Canonical URL, Open Graph and Twitter card with a 1200x630 image and alt text
 - [x] `lang="en"`, theme color, viewport
 - [x] `sitemap.xml` (with a real last-modified date to update when content changes) and `robots.txt` pointing to it
+- [x] Author in metadata (`author`, `creator`) and a Person (Muhammad Hassan) in the JSON-LD, linked as author and creator of the app
 - [x] JSON-LD in the static HTML: Organization, WebSite, SoftwareApplication (UtilitiesApplication, Windows, price 0 USD) and FAQPage built from the same text as the visible FAQ. Note: Google retired FAQ rich results in May 2026, so FAQPage won't produce a special search result; it stays because it is accurate and other consumers can read it.
-- [x] Question headings with self-contained first answers of 40 to 60 words (How do I move my apps to a new PC..., Can I reinstall Windows without a USB stick?, Is Carryover free?)
+- [x] Question headings with self-contained first answers of 40 to 60 words (How do I move my apps to a new PC..., Can I reinstall Windows without a USB stick?, Is Carryover really free?)
 - [x] A plain definition in the first paragraph ("Carryover is a free Windows app that...")
 - [x] All story text is server-rendered, readable without JavaScript (checked in `out/index.html`)
 - [x] Screenshots with descriptive alt text, width and height set, lazy loaded, WebP

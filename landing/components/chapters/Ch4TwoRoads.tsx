@@ -23,11 +23,18 @@ export default function Ch4TwoRoads() {
             <StageArt kind="roads" />
           </div>
           <div className="disk" data-disk aria-hidden="true">
-            <div className="disk-c"><b>C:</b> <span data-c-label>Windows</span><i /></div>
-            <div className="disk-d"><b>D:</b> <span>keeps the box and your files</span></div>
+            <div className="disk-c">
+              <span className="for-new"><b>Old PC:</b> stays exactly as it is</span>
+              <span className="for-refresh"><b>C:</b> <span data-c-label>Windows</span></span>
+              <i />
+            </div>
+            <div className="disk-d">
+              <span className="for-new"><b>New PC:</b> gets the box</span>
+              <span className="for-refresh"><b>D:</b> keeps the box and your files</span>
+            </div>
           </div>
         </div>
-        <div className="body">
+        <div className="body mode-stack">
           <div className="mode-copy" data-mode-copy="new">
             <p>Pair once with a QR code or a short address on your Wi-Fi. The old PC serves Carryover to the new one, encrypted, and nothing goes through a server. Then it rebuilds the new machine.</p>
             <ul className="fit">

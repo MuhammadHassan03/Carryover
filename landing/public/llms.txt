@@ -15,7 +15,8 @@
 - Platform: Windows first. macOS and Android are planned, not built.
 - Size: about 5 to 10 MB, portable. No account needed to move files locally.
 - What it can't move automatically: licenses tied to an account or machine (for example Adobe, Office) and two-factor authenticator apps. The done report lists them.
-- Giving back: the project asks people who found it useful to consider donating to the Palestine Children's Relief Fund (PCRF), an outside charity. Carryover takes nothing.
+- Giving back: Carryover is free. If it helped, the project asks you to give to children in Gaza through the Palestine Children's Relief Fund (PCRF), a registered charity. Donations go straight to PCRF; Carryover never sees or takes any of it.
+- Made by Muhammad Hassan (https://github.com/MuhammadHassan03, https://x.com/mirza_hassan07).
 
 ## Links
 - [Carryover on GitHub](https://github.com/MuhammadHassan03/Carryover): source code and downloads

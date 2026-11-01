@@ -106,7 +106,9 @@ export function startEngine(): () => void {
   );
   chapters.forEach((c) => io.observe(c.sec));
 
-  const navH = () => parseFloat(getComputedStyle(root).getPropertyValue("--nav")) || 64;
+  // read once (and on resize), never inside the frame loop: getComputedStyle forces a style recalc
+  let navPx = parseFloat(getComputedStyle(root).getPropertyValue("--nav")) || 64;
+  const navH = () => navPx;
   const targetFor = (ch: Chapter, vh: number) => {
     if (ch.free || RM.matches) return 1;
     if (WIDE.matches) {
@@ -132,7 +134,7 @@ export function startEngine(): () => void {
     const vh = window.innerHeight;
     const sy = window.scrollY;
     if (sy !== lastScroll) { dirty = true; lastScroll = sy; }
-    if (tape) {
+    if (tape && dirty) {
       const max = root.scrollHeight - vh;
       tape.style.setProperty("--read", max > 0 ? (sy / max).toFixed(4) : "0");
     }
@@ -156,7 +158,11 @@ export function startEngine(): () => void {
     raf = requestAnimationFrame(frame);
   };
   raf = requestAnimationFrame(frame);
-  const onResize = () => { dirty = true; if (gl) gl.resize(); };
+  const onResize = () => {
+    dirty = true;
+    navPx = parseFloat(getComputedStyle(root).getPropertyValue("--nav")) || 64;
+    if (gl) gl.resize();
+  };
   window.addEventListener("resize", onResize);
 
   running = () => {

@@ -77,7 +77,7 @@ export async function init(api: Api, ch: Chapter): Promise<ChapterMod> {
       let q = p;
       if (replayStart >= 0) {
         const r = (t - replayStart) / (still ? 0.001 : 3);
-        if (r >= 1) replayStart = -1; else q = Math.min(p, r);
+        if (r >= 1) replayStart = -1; else q = Math.min(p, ease.inOut(r));
       }
       camera.position.set(look.x + (still ? 0 : mx * 1.4), look.y + 1.6 - (still ? 0 : my * 0.8), look.z + dist);
       camera.lookAt(look);

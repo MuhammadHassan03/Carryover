@@ -39,8 +39,7 @@ export default function Ch3Recipe() {
           </div>
         </div>
         <div className="body">
-          <p>Apps, drivers, disk layout and your debloat choices, in plain text you can read. That includes the storage driver Windows Setup needs, so &quot;We couldn&apos;t find any drives&quot; never shows up.</p>
-          <p>Your BitLocker key is saved first. Game libraries get re-linked, so your games don&apos;t download again.</p>
+          <p>Apps, drivers, disk layout and debloat choices, in plain text you can read. The storage driver Windows Setup needs is in there, so &quot;We couldn&apos;t find any drives&quot; never shows up. Your BitLocker key is saved first, and game libraries get re-linked so your games don&apos;t download again.</p>
           <figure className="recipe">
             <figcaption>pc-recipe.yaml <span>(example)</span></figcaption>
             <pre className="recipe-full" data-recipe>{RECIPE}</pre>

@@ -1,6 +1,6 @@
 import Kicker from "./Kicker";
 import StageArt from "./StageArt";
-import { GITHUB_URL, SITE } from "@/lib/site";
+import { SITE } from "@/lib/site";
 
 export default function Ch1OldWay() {
   return (
@@ -41,7 +41,6 @@ export default function Ch1OldWay() {
           <p className="sr-only">The clock runs from Saturday morning into Sunday night while this happens.</p>
           <div className="cta-row">
             <a className="btn btn-tape" href="#ch2">See how Carryover does it</a>
-            <a className="btn btn-line" href={GITHUB_URL}>Get Carryover on GitHub</a>
           </div>
         </div>
       </div>

@@ -9,6 +9,7 @@ import Ch6Safety from "@/components/chapters/Ch6Safety";
 import Ch7Unpacked from "@/components/chapters/Ch7Unpacked";
 import FreeGive from "@/components/chapters/FreeGive";
 import Faq from "@/components/chapters/Faq";
+import Donate from "@/components/chapters/Donate";
 import StoryClient from "@/components/StoryClient";
 import ShotBand from "@/components/chapters/ShotBand";
 import { SHOTS } from "@/components/chapters/shots";
@@ -30,6 +31,7 @@ export default function Page() {
         <ShotBand label="A plan that passes, and a risky one that gets blocked" shots={[SHOTS.plan, SHOTS.risky]} />
         <Ch7Unpacked />
         <FreeGive />
+        <Donate />
         <Faq />
       </main>
       <SiteFooter />

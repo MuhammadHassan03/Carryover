@@ -1,7 +1,14 @@
-import { FAQS, GITHUB_URL, SITE, SITE_URL } from "@/lib/site";
+import { AUTHOR, FAQS, GITHUB_URL, SITE, SITE_URL } from "@/lib/site";
 
 // Structured data rendered into the static HTML (no client JS needed).
 export function buildJsonLd() {
+  const person = {
+    "@type": "Person",
+    "@id": `${SITE_URL}/#author`,
+    name: AUTHOR.name,
+    url: AUTHOR.github,
+    sameAs: [AUTHOR.github, AUTHOR.x],
+  };
   const org = {
     "@type": "Organization",
     "@id": `${SITE_URL}/#org`,
@@ -9,6 +16,7 @@ export function buildJsonLd() {
     url: `${SITE_URL}/`,
     logo: `${SITE_URL}/brand/icon.svg`,
     sameAs: [GITHUB_URL],
+    founder: { "@id": `${SITE_URL}/#author` },
   };
   const website = {
     "@type": "WebSite",
@@ -31,6 +39,8 @@ export function buildJsonLd() {
     isAccessibleForFree: true,
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     publisher: { "@id": `${SITE_URL}/#org` },
+    author: { "@id": `${SITE_URL}/#author` },
+    creator: { "@id": `${SITE_URL}/#author` },
     featureList: [
       "New device mode: pair once over Wi-Fi, encrypted, no server",
       "Refresh this PC: fresh Windows without a USB stick",
@@ -48,7 +58,7 @@ export function buildJsonLd() {
       acceptedAnswer: { "@type": "Answer", text: f.more ? `${f.a} ${f.more}` : f.a },
     })),
   };
-  return { "@context": "https://schema.org", "@graph": [org, website, app, faq] };
+  return { "@context": "https://schema.org", "@graph": [person, org, website, app, faq] };
 }
 
 export default function JsonLd() {

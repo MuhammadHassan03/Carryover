@@ -1,4 +1,4 @@
-import { GITHUB_URL, PCRF_URL } from "@/lib/site";
+import { AUTHOR, DONATE_WHERE, GITHUB_URL, PCRF_URL } from "@/lib/site";
 import StageArt from "@/components/chapters/StageArt";
 
 export default function SiteFooter() {
@@ -19,18 +19,27 @@ export default function SiteFooter() {
           </div>
         </div>
       </div>
+      <div className="wrap foot-meta">
+        <div className="foot-give">
+          <p className="foot-label">Give back</p>
+          <p>{DONATE_WHERE}</p>
+          <a href={PCRF_URL} target="_blank" rel="noopener noreferrer">Donate to PCRF<span className="sr-only"> (opens pcrf.net in a new tab)</span></a>
+          <span className="foot-note" aria-hidden="true">opens pcrf.net</span>
+        </div>
+        <div className="foot-credits">
+          <p className="foot-label">Credits</p>
+          <p>{`Made by ${AUTHOR.name}.`}</p>
+          <ul>
+            <li><a href={AUTHOR.github}>{AUTHOR.name} on GitHub</a></li>
+            <li><a href={AUTHOR.x}>{AUTHOR.name} on X</a></li>
+            <li><a href={GITHUB_URL}>Carryover source code</a></li>
+          </ul>
+        </div>
+      </div>
       <div className="wrap foot-small">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/brand/icon.svg" width={28} height={28} alt="" />
         <p>Carryover. Early development, free to use. Windows is a trademark of Microsoft.</p>
-        <ul>
-          <li><a href={GITHUB_URL}>Carryover on GitHub</a></li>
-          <li>
-            <a href={PCRF_URL} target="_blank" rel="noopener noreferrer">
-              Give to PCRF<span className="sr-only"> (external charity, opens in a new tab)</span>
-            </a>
-          </li>
-        </ul>
       </div>
     </footer>
   );

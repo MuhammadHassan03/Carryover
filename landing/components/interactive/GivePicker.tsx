@@ -15,21 +15,28 @@ const AMOUNTS = [10, 20, 50, 100];
 export default function GivePicker() {
   const [amt, setAmt] = useState(20);
   return (
-    <>
+    <div className="give-box">
       <fieldset className="amounts">
-        <legend>Pick an amount to see what it does, using PCRF&apos;s own examples</legend>
-        {AMOUNTS.map((a) => (
-          <label key={a}>
-            <input type="radio" name="amt" value={a} checked={amt === a} onChange={() => setAmt(a)} />
-            <span>${a}</span>
-          </label>
-        ))}
+        <legend>What a gift can do, in PCRF&apos;s own examples</legend>
+        <div className="amounts-row">
+          {AMOUNTS.map((a) => (
+            <label key={a}>
+              <input type="radio" name="amt" value={a} checked={amt === a} onChange={() => setAmt(a)} />
+              <span>${a}</span>
+            </label>
+          ))}
+        </div>
       </fieldset>
       <p className="give-says" aria-live="polite">{SAYS[amt]}</p>
-      <a className="btn btn-tape" href={PCRF_URL} target="_blank" rel="noopener noreferrer">
-        Give ${amt} through PCRF
-        <span className="sr-only"> (opens the Palestine Children&apos;s Relief Fund site in a new tab)</span>
-      </a>
-    </>
+      <div className="give-actions">
+        <a className="btn btn-donate" href={PCRF_URL} target="_blank" rel="noopener noreferrer">
+          <span className="btn-donate-main">Donate to PCRF</span>
+          <span className="btn-donate-sub">opens pcrf.net in a new tab</span>
+        </a>
+        <p className="small">You choose the final amount on PCRF&apos;s page.{" "}
+          <a href={PCRF_URL} target="_blank" rel="noopener noreferrer">Read about PCRF&apos;s Gaza relief work<span className="sr-only"> (opens pcrf.net in a new tab)</span></a>
+        </p>
+      </div>
+    </div>
   );
 }

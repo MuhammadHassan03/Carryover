@@ -138,7 +138,7 @@ export async function init(api: Api, ch: Chapter): Promise<ChapterMod> {
       const still = api.reduced();
       // a mode switch replays that road over 2.5 seconds
       const since = t - modeChanged;
-      const q = modeChanged > 0 && since < 2.5 && !still ? Math.min(p, since / 2.5) : p;
+      const q = modeChanged > 0 && since < 2.5 && !still ? Math.min(p, ease.inOut(since / 2.5)) : p;
       camera.position.set(look.x, look.y + 3.4, look.z + dist);
       camera.lookAt(look);
       gNew.visible = mode === "new";

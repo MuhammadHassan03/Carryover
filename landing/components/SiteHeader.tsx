@@ -15,6 +15,7 @@ export default function SiteHeader() {
             <ul>
               <li><a href="#ch1">The story</a></li>
               <li><a href="#free">Free</a></li>
+              <li><a href="#donate">Donate</a></li>
               <li><a href="#faq">Questions</a></li>
             </ul>
           </nav>

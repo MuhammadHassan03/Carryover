@@ -7,6 +7,16 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://carryover.
 export const GITHUB_URL = "https://github.com/MuhammadHassan03/Carryover";
 export const PCRF_URL = "https://www.pcrf.net/donate/gazareliefandrecovery.html";
 
+export const AUTHOR = {
+  name: "Muhammad Hassan",
+  github: "https://github.com/MuhammadHassan03",
+  x: "https://x.com/mirza_hassan07",
+};
+
+// One wording for the donation everywhere (donate section, footer, FAQ).
+export const DONATE_WHERE =
+  "Donations go straight to the Palestine Children's Relief Fund (PCRF), a registered charity. Carryover never sees or takes any of it.";
+
 export const SITE = {
   name: "Carryover",
   title: "Carryover: move apps and files to a new Windows PC, free",
@@ -31,8 +41,8 @@ export const FAQS: Faq[] = [
     more: "The recipe includes the storage driver Windows Setup needs, which is the usual cause of the \"We couldn't find any drives\" error.",
   },
   {
-    q: "Is Carryover free?",
-    a: "Yes. Carryover is free with every feature included: New device, Refresh this PC, drivers, Organize my files and rollback. There is no account, no limit on moves and no ads. If it saved you an evening, we ask you to consider a donation to the Palestine Children's Relief Fund instead of paying us.",
+    q: "Is Carryover really free?",
+    a: "Yes. Every feature is free: New device, Refresh this PC, drivers, Organize my files and rollback. There is no account, no limit on moves and no ads. If it helped you, consider a donation to the Palestine Children's Relief Fund (PCRF). Donations go straight to PCRF, and Carryover never sees or takes any of it.",
   },
   {
     q: "Is it safe? Can Carryover wipe the wrong drive?",
