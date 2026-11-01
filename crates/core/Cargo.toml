@@ -1,0 +1,14 @@
+[package]
+name = "carryover-core"
+description = "Scanner, recipe, planner and safety checker for Carryover"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+sha2.workspace = true
+hex.workspace = true

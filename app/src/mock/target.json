@@ -1,0 +1,48 @@
+{
+  "cpu": "AMD Ryzen 7 8845HS",
+  "cpuCores": 8,
+  "disks": [
+    {
+      "bus": "NVMe",
+      "isBoot": true,
+      "model": "SK hynix 256GB NVMe",
+      "number": 0,
+      "partitions": [
+        {
+          "driveLetter": null,
+          "encryption": "none",
+          "fileSystem": "FAT32",
+          "freeBytes": null,
+          "kind": "efi",
+          "label": "",
+          "number": 1,
+          "sizeBytes": 268435456
+        },
+        {
+          "driveLetter": "C",
+          "encryption": "bitLocker",
+          "fileSystem": "NTFS",
+          "freeBytes": 221000000000,
+          "kind": "system",
+          "label": "Windows",
+          "number": 3,
+          "sizeBytes": 254000000000
+        }
+      ],
+      "sizeBytes": 256060514304
+    }
+  ],
+  "firmware": "uefi",
+  "gpus": [
+    "AMD Radeon 780M"
+  ],
+  "hostname": "NEW-LAPTOP",
+  "manufacturer": "Lenovo",
+  "model": "IdeaPad Slim 5",
+  "osBuild": "26100",
+  "osName": "Microsoft Windows 11 Home",
+  "osVersion": "10.0.26100",
+  "ramBytes": 8589934592,
+  "secureBoot": true,
+  "tpmPresent": true
+}

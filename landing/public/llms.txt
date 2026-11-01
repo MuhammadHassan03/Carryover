@@ -1,0 +1,22 @@
+# Carryover
+
+> Carryover is a free Windows app that sets up a new or freshly reset PC from your old one: apps, settings, drivers and files. No account, no limits, no ads.
+
+## What it does
+- New device: pair the old and new PC once with a QR code or a short address on your Wi-Fi. The old PC serves Carryover to the new one, encrypted, with nothing going through a server. Then it rebuilds the new machine.
+- Refresh this PC: fresh Windows without a USB stick. Windows Setup is staged on a drive that stays untouched. Your files are copied off the Windows drive first and put back after.
+- PC Recipe: one small file listing apps (as installable IDs), drivers (including the storage driver Windows Setup needs), disk layout, the BitLocker key (saved first), game libraries to re-link, and debloat choices.
+- Fitted to the new machine: with less RAM, heavy apps don't start with Windows; with a smaller SSD, you pick what comes along; with a different GPU or maker, old vendor tools and drivers stay behind.
+- Organize my files (optional): loose Desktop and Downloads files are sorted into folders. Nothing is deleted or overwritten, duplicates are only flagged, every move can be undone.
+- Safety: an AI can draft the plan, but plain code checks every step against fixed rules (13 today) and you approve before anything runs.
+
+## Facts
+- Price: free, every feature.
+- Platform: Windows first. macOS and Android are planned, not built.
+- Size: about 5 to 10 MB, portable. No account needed to move files locally.
+- What it can't move automatically: licenses tied to an account or machine (for example Adobe, Office) and two-factor authenticator apps. The done report lists them.
+- Giving back: the project asks people who found it useful to consider donating to the Palestine Children's Relief Fund (PCRF), an outside charity. Carryover takes nothing.
+
+## Links
+- [Carryover on GitHub](https://github.com/MuhammadHassan03/Carryover): source code and downloads
+- [PCRF Gaza Relief and Recovery](https://www.pcrf.net/donate/gazareliefandrecovery.html): external charity donation page

@@ -1,0 +1,19 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Main window permissions. Kept minimal: no filesystem, shell or HTTP access from the web layer. The only external link allowed is the PCRF donation page.",
+  "windows": [
+    "main"
+  ],
+  "permissions": [
+    "core:default",
+    {
+      "identifier": "opener:allow-open-url",
+      "allow": [
+        {
+          "url": "https://www.pcrf.net/donate/*"
+        }
+      ]
+    }
+  ]
+}

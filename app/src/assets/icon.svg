@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Carryover">
+  <rect width="64" height="64" rx="14" fill="#E6C08A"/>
+  <g stroke="#16120E" stroke-width="2.6" stroke-linejoin="round">
+    <path fill="#16120E" d="M8 25 30 36v22L8 47Z"/>
+    <path fill="#3B2C1D" d="M30 36 52 25v22L30 58Z"/>
+    <path fill="#F6E7CB" d="M30 14 52 25 30 36 8 25Z"/>
+    <path fill="#FF4D17" d="M15 28.5 23 32.5V50l-8-4Z"/>
+    <path fill="#FF4D17" d="M15 28.5 23 32.5 44 22 47.5 23.8 58 11 39 12.5 42.5 14.3 21 25Z"/>
+  </g>
+</svg>

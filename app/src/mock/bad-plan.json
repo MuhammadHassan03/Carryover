@@ -1,0 +1,185 @@
+{
+  "plan": {
+    "mode": "refreshThisPc",
+    "planner": "ai",
+    "steps": [
+      {
+        "action": "saveRecipe",
+        "to": {
+          "kind": "volume",
+          "letter": "C"
+        }
+      },
+      {
+        "action": "saveBitLockerKey",
+        "letter": "C",
+        "to": {
+          "kind": "volume",
+          "letter": "D"
+        }
+      },
+      {
+        "action": "backupUserFiles",
+        "bytes": 2903493682,
+        "to": {
+          "kind": "volume",
+          "letter": "D"
+        }
+      },
+      {
+        "action": "exportDrivers",
+        "bootCriticalOnly": false,
+        "to": {
+          "kind": "volume",
+          "letter": "D"
+        }
+      },
+      {
+        "action": "suspendBitLocker",
+        "letter": "C"
+      },
+      {
+        "action": "stageRecoveryEnvironment",
+        "disk": 0,
+        "partition": 4
+      },
+      {
+        "action": "installApp",
+        "name": "PC Optimizer Pro",
+        "wingetId": "Unknown.Optimizer"
+      },
+      {
+        "action": "wipeAndInstallWindows",
+        "disk": 0,
+        "partition": 3
+      },
+      {
+        "action": "injectDrivers"
+      },
+      {
+        "action": "restoreUserFiles"
+      },
+      {
+        "action": "installApp",
+        "name": "7-Zip",
+        "wingetId": "7zip.7zip"
+      },
+      {
+        "action": "manualApp",
+        "name": "Adobe Photoshop 2024",
+        "reason": "Paid license. Sign out or deactivate it on the old PC first, then sign in after setup."
+      },
+      {
+        "action": "manualApp",
+        "name": "Armoury Crate",
+        "reason": "No installable package found. Carryover will link you to the vendor's download page."
+      },
+      {
+        "action": "installApp",
+        "name": "Discord",
+        "wingetId": "Discord.Discord"
+      },
+      {
+        "action": "installApp",
+        "name": "Docker Desktop",
+        "wingetId": "Docker.DockerDesktop"
+      },
+      {
+        "action": "installApp",
+        "name": "Git",
+        "wingetId": "Git.Git"
+      },
+      {
+        "action": "installApp",
+        "name": "Google Chrome",
+        "wingetId": "Google.Chrome"
+      },
+      {
+        "action": "manualApp",
+        "name": "Hamachi",
+        "reason": "No installable package found. Carryover will link you to the vendor's download page."
+      },
+      {
+        "action": "manualApp",
+        "name": "Intel(R) Graphics Command Center",
+        "reason": "No installable package found. Carryover will link you to the vendor's download page."
+      },
+      {
+        "action": "manualApp",
+        "name": "Microsoft 365 Apps for business",
+        "reason": "Paid license. Sign out or deactivate it on the old PC first, then sign in after setup."
+      },
+      {
+        "action": "installApp",
+        "name": "Microsoft Visual Studio Code",
+        "wingetId": "Microsoft.VisualStudioCode"
+      },
+      {
+        "action": "installApp",
+        "name": "Node.js",
+        "wingetId": "OpenJS.NodeJS"
+      },
+      {
+        "action": "installApp",
+        "name": "Notepad++",
+        "wingetId": "Notepad++.Notepad++"
+      },
+      {
+        "action": "installApp",
+        "name": "OBS Studio",
+        "wingetId": "OBSProject.OBSStudio"
+      },
+      {
+        "action": "installApp",
+        "name": "Postman",
+        "wingetId": "Postman.Postman"
+      },
+      {
+        "action": "installApp",
+        "name": "Python 3.12.7",
+        "wingetId": "Python.Python.3.12"
+      },
+      {
+        "action": "installApp",
+        "name": "Steam",
+        "wingetId": "Valve.Steam"
+      },
+      {
+        "action": "installApp",
+        "name": "VLC media player",
+        "wingetId": "VideoLAN.VLC"
+      },
+      {
+        "action": "installApp",
+        "name": "WhatsApp",
+        "wingetId": "9NKSQGP7F2NH"
+      },
+      {
+        "action": "installApp",
+        "name": "Zoom Workplace",
+        "wingetId": "Zoom.Zoom"
+      },
+      {
+        "action": "verify"
+      }
+    ]
+  },
+  "verdict": {
+    "ok": false,
+    "rulesChecked": 13,
+    "violations": [
+      {
+        "message": "This saves to C:, which is the drive being erased. Add a second drive or a USB stick and save there.",
+        "rule": "keep-off-erased-volume",
+        "severity": "block",
+        "step": 0
+      },
+      {
+        "message": "\"PC Optimizer Pro\" (Unknown.Optimizer) was not on the source PC, so it won't be installed.",
+        "rule": "known-apps-only",
+        "severity": "block",
+        "step": 6
+      }
+    ]
+  }
+}

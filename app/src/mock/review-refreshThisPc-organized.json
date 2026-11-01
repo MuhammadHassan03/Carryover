@@ -1,0 +1,667 @@
+{
+  "advice": [
+    {
+      "detail": "This PC needs an Intel RST/VMD driver for Windows Setup to see the disk. Carryover exports it and adds it to Setup for you.",
+      "id": "storage-driver",
+      "level": "info",
+      "title": "Storage driver saved"
+    }
+  ],
+  "organize": {
+    "duplicates": [
+      {
+        "paths": [
+          "Desktop/CV_Muhammad_Hassan.docx",
+          "Desktop/CV_Muhammad_Hassan - Copy.docx"
+        ],
+        "sizeBytes": 64000
+      },
+      {
+        "paths": [
+          "Downloads/invoice-october.pdf",
+          "Downloads/invoice-october (1).pdf"
+        ],
+        "sizeBytes": 88000
+      },
+      {
+        "paths": [
+          "Downloads/DiscordSetup.exe",
+          "Downloads/DiscordSetup (1).exe"
+        ],
+        "sizeBytes": 112000000
+      }
+    ],
+    "groups": [
+      {
+        "bytes": 493880000,
+        "count": 6,
+        "examples": [
+          "ChromeSetup.exe",
+          "VSCodeUserSetup-x64-1.95.1.exe",
+          "node-v22.11.0-x64.msi"
+        ],
+        "folder": "Downloads/Installers",
+        "label": "Installers",
+        "rule": "installers"
+      },
+      {
+        "bytes": 358000000,
+        "count": 2,
+        "examples": [
+          "project-files.zip",
+          "drivers_backup.7z"
+        ],
+        "folder": "Downloads/Archives",
+        "label": "Archives",
+        "rule": "archives"
+      },
+      {
+        "bytes": 1195000,
+        "count": 3,
+        "examples": [
+          "Screenshot 2025-03-12 101500.png",
+          "Screenshot 2025-03-13 144210.png",
+          "Screenshot 2025-03-13 144455.png"
+        ],
+        "folder": "Pictures/Screenshots",
+        "label": "Screenshots",
+        "rule": "screenshots"
+      },
+      {
+        "bytes": 12510000,
+        "count": 4,
+        "examples": [
+          "IMG_20250214_181022.jpg",
+          "IMG_20250214_181030.jpg",
+          "IMG_20250301_093355.jpg"
+        ],
+        "folder": "Pictures (2 folders)",
+        "label": "Photos by month",
+        "rule": "photos"
+      },
+      {
+        "bytes": 86000000,
+        "count": 1,
+        "examples": [
+          "screen-recording.mp4"
+        ],
+        "folder": "Videos/2025",
+        "label": "Videos by year",
+        "rule": "videos"
+      },
+      {
+        "bytes": 3400000,
+        "count": 1,
+        "examples": [
+          "song-idea.m4a"
+        ],
+        "folder": "Music/Unsorted",
+        "label": "Music",
+        "rule": "music"
+      },
+      {
+        "bytes": 2886000,
+        "count": 4,
+        "examples": [
+          "IELTS_Writing_Task2_samples.pdf",
+          "TU_Ilmenau_admission_letter.pdf",
+          "invoice-october.pdf"
+        ],
+        "folder": "Documents/PDFs",
+        "label": "PDFs",
+        "rule": "pdfs"
+      },
+      {
+        "bytes": 128000,
+        "count": 2,
+        "examples": [
+          "CV_Muhammad_Hassan.docx",
+          "CV_Muhammad_Hassan - Copy.docx"
+        ],
+        "folder": "Documents/Word",
+        "label": "Word documents",
+        "rule": "wordDocs"
+      },
+      {
+        "bytes": 54000,
+        "count": 1,
+        "examples": [
+          "Budget 2026.xlsx"
+        ],
+        "folder": "Documents/Spreadsheets",
+        "label": "Spreadsheets",
+        "rule": "spreadsheets"
+      },
+      {
+        "bytes": 6800000,
+        "count": 1,
+        "examples": [
+          "pitch-deck-v3.pptx"
+        ],
+        "folder": "Documents/Presentations",
+        "label": "Presentations",
+        "rule": "slides"
+      },
+      {
+        "bytes": 20100,
+        "count": 3,
+        "examples": [
+          "lecture-notes.txt",
+          "todo.txt",
+          "Carryover notes.md"
+        ],
+        "folder": "Documents/Notes",
+        "label": "Text and notes",
+        "rule": "textFiles"
+      }
+    ],
+    "leftAlone": 10,
+    "moves": [
+      {
+        "from": "Downloads/ChromeSetup.exe",
+        "rule": "installers",
+        "to": "Downloads/Installers/ChromeSetup.exe"
+      },
+      {
+        "from": "Downloads/VSCodeUserSetup-x64-1.95.1.exe",
+        "rule": "installers",
+        "to": "Downloads/Installers/VSCodeUserSetup-x64-1.95.1.exe"
+      },
+      {
+        "from": "Downloads/node-v22.11.0-x64.msi",
+        "rule": "installers",
+        "to": "Downloads/Installers/node-v22.11.0-x64.msi"
+      },
+      {
+        "from": "Downloads/DiscordSetup.exe",
+        "rule": "installers",
+        "to": "Downloads/Installers/DiscordSetup.exe"
+      },
+      {
+        "from": "Downloads/DiscordSetup (1).exe",
+        "rule": "installers",
+        "to": "Downloads/Installers/DiscordSetup (1).exe"
+      },
+      {
+        "from": "Downloads/OBS-Studio-30.2.3-Windows-Installer.exe",
+        "rule": "installers",
+        "to": "Downloads/Installers/OBS-Studio-30.2.3-Windows-Installer.exe"
+      },
+      {
+        "from": "Downloads/IELTS_Writing_Task2_samples.pdf",
+        "rule": "pdfs",
+        "to": "Documents/PDFs/IELTS_Writing_Task2_samples.pdf"
+      },
+      {
+        "from": "Downloads/TU_Ilmenau_admission_letter.pdf",
+        "rule": "pdfs",
+        "to": "Documents/PDFs/TU_Ilmenau_admission_letter.pdf"
+      },
+      {
+        "from": "Downloads/invoice-october.pdf",
+        "rule": "pdfs",
+        "to": "Documents/PDFs/invoice-october.pdf"
+      },
+      {
+        "from": "Downloads/invoice-october (1).pdf",
+        "rule": "pdfs",
+        "to": "Documents/PDFs/invoice-october (1).pdf"
+      },
+      {
+        "from": "Downloads/Budget 2026.xlsx",
+        "rule": "spreadsheets",
+        "to": "Documents/Spreadsheets/Budget 2026.xlsx"
+      },
+      {
+        "from": "Downloads/pitch-deck-v3.pptx",
+        "rule": "slides",
+        "to": "Documents/Presentations/pitch-deck-v3.pptx"
+      },
+      {
+        "from": "Downloads/IMG_20250214_181022.jpg",
+        "rule": "photos",
+        "to": "Pictures/2025-02/IMG_20250214_181022.jpg"
+      },
+      {
+        "from": "Downloads/IMG_20250214_181030.jpg",
+        "rule": "photos",
+        "to": "Pictures/2025-02/IMG_20250214_181030.jpg"
+      },
+      {
+        "from": "Downloads/IMG_20250301_093355.jpg",
+        "rule": "photos",
+        "to": "Pictures/2025-03/IMG_20250301_093355.jpg"
+      },
+      {
+        "from": "Downloads/WhatsApp Image 2025-03-10 at 21.04.11.jpeg",
+        "rule": "photos",
+        "to": "Pictures/2025-03/WhatsApp Image 2025-03-10 at 21.04.11.jpeg"
+      },
+      {
+        "from": "Downloads/project-files.zip",
+        "rule": "archives",
+        "to": "Downloads/Archives/project-files.zip"
+      },
+      {
+        "from": "Downloads/drivers_backup.7z",
+        "rule": "archives",
+        "to": "Downloads/Archives/drivers_backup.7z"
+      },
+      {
+        "from": "Downloads/screen-recording.mp4",
+        "rule": "videos",
+        "to": "Videos/2025/screen-recording.mp4"
+      },
+      {
+        "from": "Downloads/lecture-notes.txt",
+        "rule": "textFiles",
+        "to": "Documents/Notes/lecture-notes.txt"
+      },
+      {
+        "from": "Desktop/Screenshot 2025-03-12 101500.png",
+        "rule": "screenshots",
+        "to": "Pictures/Screenshots/Screenshot 2025-03-12 101500.png"
+      },
+      {
+        "from": "Desktop/Screenshot 2025-03-13 144210.png",
+        "rule": "screenshots",
+        "to": "Pictures/Screenshots/Screenshot 2025-03-13 144210.png"
+      },
+      {
+        "from": "Desktop/Screenshot 2025-03-13 144455.png",
+        "rule": "screenshots",
+        "to": "Pictures/Screenshots/Screenshot 2025-03-13 144455.png"
+      },
+      {
+        "from": "Desktop/CV_Muhammad_Hassan.docx",
+        "rule": "wordDocs",
+        "to": "Documents/Word/CV_Muhammad_Hassan.docx"
+      },
+      {
+        "from": "Desktop/CV_Muhammad_Hassan - Copy.docx",
+        "rule": "wordDocs",
+        "to": "Documents/Word/CV_Muhammad_Hassan - Copy.docx"
+      },
+      {
+        "from": "Desktop/todo.txt",
+        "rule": "textFiles",
+        "to": "Documents/Notes/todo.txt"
+      },
+      {
+        "from": "Desktop/Carryover notes.md",
+        "rule": "textFiles",
+        "to": "Documents/Notes/Carryover notes.md"
+      },
+      {
+        "from": "Desktop/song-idea.m4a",
+        "rule": "music",
+        "to": "Music/Unsorted/song-idea.m4a"
+      }
+    ],
+    "scanned": 38
+  },
+  "plan": {
+    "mode": "refreshThisPc",
+    "planner": "rules",
+    "steps": [
+      {
+        "action": "saveRecipe",
+        "to": {
+          "kind": "volume",
+          "letter": "D"
+        }
+      },
+      {
+        "action": "saveBitLockerKey",
+        "letter": "C",
+        "to": {
+          "kind": "volume",
+          "letter": "D"
+        }
+      },
+      {
+        "action": "backupUserFiles",
+        "bytes": 2903493682,
+        "to": {
+          "kind": "volume",
+          "letter": "D"
+        }
+      },
+      {
+        "action": "exportDrivers",
+        "bootCriticalOnly": false,
+        "to": {
+          "kind": "volume",
+          "letter": "D"
+        }
+      },
+      {
+        "action": "suspendBitLocker",
+        "letter": "C"
+      },
+      {
+        "action": "stageRecoveryEnvironment",
+        "disk": 0,
+        "partition": 4
+      },
+      {
+        "action": "wipeAndInstallWindows",
+        "disk": 0,
+        "partition": 3
+      },
+      {
+        "action": "injectDrivers"
+      },
+      {
+        "action": "restoreUserFiles"
+      },
+      {
+        "action": "organizeFiles",
+        "moves": [
+          {
+            "from": "Downloads/ChromeSetup.exe",
+            "rule": "installers",
+            "to": "Downloads/Installers/ChromeSetup.exe"
+          },
+          {
+            "from": "Downloads/VSCodeUserSetup-x64-1.95.1.exe",
+            "rule": "installers",
+            "to": "Downloads/Installers/VSCodeUserSetup-x64-1.95.1.exe"
+          },
+          {
+            "from": "Downloads/node-v22.11.0-x64.msi",
+            "rule": "installers",
+            "to": "Downloads/Installers/node-v22.11.0-x64.msi"
+          },
+          {
+            "from": "Downloads/DiscordSetup.exe",
+            "rule": "installers",
+            "to": "Downloads/Installers/DiscordSetup.exe"
+          },
+          {
+            "from": "Downloads/DiscordSetup (1).exe",
+            "rule": "installers",
+            "to": "Downloads/Installers/DiscordSetup (1).exe"
+          },
+          {
+            "from": "Downloads/OBS-Studio-30.2.3-Windows-Installer.exe",
+            "rule": "installers",
+            "to": "Downloads/Installers/OBS-Studio-30.2.3-Windows-Installer.exe"
+          },
+          {
+            "from": "Downloads/IELTS_Writing_Task2_samples.pdf",
+            "rule": "pdfs",
+            "to": "Documents/PDFs/IELTS_Writing_Task2_samples.pdf"
+          },
+          {
+            "from": "Downloads/TU_Ilmenau_admission_letter.pdf",
+            "rule": "pdfs",
+            "to": "Documents/PDFs/TU_Ilmenau_admission_letter.pdf"
+          },
+          {
+            "from": "Downloads/invoice-october.pdf",
+            "rule": "pdfs",
+            "to": "Documents/PDFs/invoice-october.pdf"
+          },
+          {
+            "from": "Downloads/invoice-october (1).pdf",
+            "rule": "pdfs",
+            "to": "Documents/PDFs/invoice-october (1).pdf"
+          },
+          {
+            "from": "Downloads/Budget 2026.xlsx",
+            "rule": "spreadsheets",
+            "to": "Documents/Spreadsheets/Budget 2026.xlsx"
+          },
+          {
+            "from": "Downloads/pitch-deck-v3.pptx",
+            "rule": "slides",
+            "to": "Documents/Presentations/pitch-deck-v3.pptx"
+          },
+          {
+            "from": "Downloads/IMG_20250214_181022.jpg",
+            "rule": "photos",
+            "to": "Pictures/2025-02/IMG_20250214_181022.jpg"
+          },
+          {
+            "from": "Downloads/IMG_20250214_181030.jpg",
+            "rule": "photos",
+            "to": "Pictures/2025-02/IMG_20250214_181030.jpg"
+          },
+          {
+            "from": "Downloads/IMG_20250301_093355.jpg",
+            "rule": "photos",
+            "to": "Pictures/2025-03/IMG_20250301_093355.jpg"
+          },
+          {
+            "from": "Downloads/WhatsApp Image 2025-03-10 at 21.04.11.jpeg",
+            "rule": "photos",
+            "to": "Pictures/2025-03/WhatsApp Image 2025-03-10 at 21.04.11.jpeg"
+          },
+          {
+            "from": "Downloads/project-files.zip",
+            "rule": "archives",
+            "to": "Downloads/Archives/project-files.zip"
+          },
+          {
+            "from": "Downloads/drivers_backup.7z",
+            "rule": "archives",
+            "to": "Downloads/Archives/drivers_backup.7z"
+          },
+          {
+            "from": "Downloads/screen-recording.mp4",
+            "rule": "videos",
+            "to": "Videos/2025/screen-recording.mp4"
+          },
+          {
+            "from": "Downloads/lecture-notes.txt",
+            "rule": "textFiles",
+            "to": "Documents/Notes/lecture-notes.txt"
+          },
+          {
+            "from": "Desktop/Screenshot 2025-03-12 101500.png",
+            "rule": "screenshots",
+            "to": "Pictures/Screenshots/Screenshot 2025-03-12 101500.png"
+          },
+          {
+            "from": "Desktop/Screenshot 2025-03-13 144210.png",
+            "rule": "screenshots",
+            "to": "Pictures/Screenshots/Screenshot 2025-03-13 144210.png"
+          },
+          {
+            "from": "Desktop/Screenshot 2025-03-13 144455.png",
+            "rule": "screenshots",
+            "to": "Pictures/Screenshots/Screenshot 2025-03-13 144455.png"
+          },
+          {
+            "from": "Desktop/CV_Muhammad_Hassan.docx",
+            "rule": "wordDocs",
+            "to": "Documents/Word/CV_Muhammad_Hassan.docx"
+          },
+          {
+            "from": "Desktop/CV_Muhammad_Hassan - Copy.docx",
+            "rule": "wordDocs",
+            "to": "Documents/Word/CV_Muhammad_Hassan - Copy.docx"
+          },
+          {
+            "from": "Desktop/todo.txt",
+            "rule": "textFiles",
+            "to": "Documents/Notes/todo.txt"
+          },
+          {
+            "from": "Desktop/Carryover notes.md",
+            "rule": "textFiles",
+            "to": "Documents/Notes/Carryover notes.md"
+          },
+          {
+            "from": "Desktop/song-idea.m4a",
+            "rule": "music",
+            "to": "Music/Unsorted/song-idea.m4a"
+          }
+        ]
+      },
+      {
+        "action": "installApp",
+        "name": "7-Zip",
+        "wingetId": "7zip.7zip"
+      },
+      {
+        "action": "manualApp",
+        "name": "Adobe Photoshop 2024",
+        "reason": "Paid license. Sign out or deactivate it on the old PC first, then sign in after setup."
+      },
+      {
+        "action": "manualApp",
+        "name": "Armoury Crate",
+        "reason": "No installable package found. Carryover will link you to the vendor's download page."
+      },
+      {
+        "action": "installApp",
+        "name": "Discord",
+        "wingetId": "Discord.Discord"
+      },
+      {
+        "action": "installApp",
+        "name": "Docker Desktop",
+        "wingetId": "Docker.DockerDesktop"
+      },
+      {
+        "action": "installApp",
+        "name": "Git",
+        "wingetId": "Git.Git"
+      },
+      {
+        "action": "installApp",
+        "name": "Google Chrome",
+        "wingetId": "Google.Chrome"
+      },
+      {
+        "action": "manualApp",
+        "name": "Hamachi",
+        "reason": "No installable package found. Carryover will link you to the vendor's download page."
+      },
+      {
+        "action": "manualApp",
+        "name": "Intel(R) Graphics Command Center",
+        "reason": "No installable package found. Carryover will link you to the vendor's download page."
+      },
+      {
+        "action": "manualApp",
+        "name": "Microsoft 365 Apps for business",
+        "reason": "Paid license. Sign out or deactivate it on the old PC first, then sign in after setup."
+      },
+      {
+        "action": "installApp",
+        "name": "Microsoft Visual Studio Code",
+        "wingetId": "Microsoft.VisualStudioCode"
+      },
+      {
+        "action": "installApp",
+        "name": "Node.js",
+        "wingetId": "OpenJS.NodeJS"
+      },
+      {
+        "action": "installApp",
+        "name": "Notepad++",
+        "wingetId": "Notepad++.Notepad++"
+      },
+      {
+        "action": "installApp",
+        "name": "OBS Studio",
+        "wingetId": "OBSProject.OBSStudio"
+      },
+      {
+        "action": "installApp",
+        "name": "Postman",
+        "wingetId": "Postman.Postman"
+      },
+      {
+        "action": "installApp",
+        "name": "Python 3.12.7",
+        "wingetId": "Python.Python.3.12"
+      },
+      {
+        "action": "installApp",
+        "name": "Steam",
+        "wingetId": "Valve.Steam"
+      },
+      {
+        "action": "installApp",
+        "name": "VLC media player",
+        "wingetId": "VideoLAN.VLC"
+      },
+      {
+        "action": "installApp",
+        "name": "WhatsApp",
+        "wingetId": "9NKSQGP7F2NH"
+      },
+      {
+        "action": "installApp",
+        "name": "Zoom Workplace",
+        "wingetId": "Zoom.Zoom"
+      },
+      {
+        "action": "verify"
+      }
+    ]
+  },
+  "rules": [
+    {
+      "id": "known-targets",
+      "text": "Every disk and partition a step names exists on this PC."
+    },
+    {
+      "id": "protected-partitions",
+      "text": "EFI, reserved and recovery partitions are never staged on or erased."
+    },
+    {
+      "id": "only-windows-volume",
+      "text": "Only the Windows volume may be erased, and only once."
+    },
+    {
+      "id": "keep-off-erased-volume",
+      "text": "Recipe, keys and drivers are never saved to the volume being erased."
+    },
+    {
+      "id": "save-before-erase",
+      "text": "Recipe, BitLocker key and drivers are saved before anything is erased."
+    },
+    {
+      "id": "bitlocker-suspended",
+      "text": "BitLocker is suspended before Windows is reinstalled."
+    },
+    {
+      "id": "storage-drivers",
+      "text": "Storage drivers are exported and injected so Setup can see the disk."
+    },
+    {
+      "id": "known-apps-only",
+      "text": "Only apps found on the source PC can be installed."
+    },
+    {
+      "id": "mode-matches",
+      "text": "New-device plans never erase anything on this PC."
+    },
+    {
+      "id": "volume-exists",
+      "text": "Every drive letter a step writes to exists."
+    },
+    {
+      "id": "staging-space",
+      "text": "The staging volume has enough free space."
+    },
+    {
+      "id": "files-backed-up",
+      "text": "Your files are copied off the Windows drive before it's erased, and restored after."
+    },
+    {
+      "id": "organize-safe",
+      "text": "Organizing only moves files inside your own folders, never deletes or overwrites."
+    }
+  ],
+  "verdict": {
+    "ok": true,
+    "rulesChecked": 13,
+    "violations": []
+  }
+}

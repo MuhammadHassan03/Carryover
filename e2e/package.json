@@ -1,0 +1,11 @@
+{
+  "name": "carryover-e2e",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node app.test.mjs"
+  },
+  "dependencies": {
+    "selenium-webdriver": "^4.27.0"
+  }
+}

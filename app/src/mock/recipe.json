@@ -1,0 +1,469 @@
+{
+  "apps": [
+    {
+      "name": "7-Zip",
+      "publisher": null,
+      "source": "winget",
+      "version": "24.08",
+      "wingetId": "7zip.7zip"
+    },
+    {
+      "name": "Adobe Photoshop 2024",
+      "publisher": null,
+      "source": "registry",
+      "version": "25.12",
+      "wingetId": null
+    },
+    {
+      "name": "Armoury Crate",
+      "publisher": null,
+      "source": "registry",
+      "version": "6.1.13",
+      "wingetId": null
+    },
+    {
+      "name": "Discord",
+      "publisher": null,
+      "source": "winget",
+      "version": "1.0.9171",
+      "wingetId": "Discord.Discord"
+    },
+    {
+      "name": "Docker Desktop",
+      "publisher": null,
+      "source": "winget",
+      "version": "4.35.1",
+      "wingetId": "Docker.DockerDesktop"
+    },
+    {
+      "name": "Git",
+      "publisher": null,
+      "source": "winget",
+      "version": "2.47.0",
+      "wingetId": "Git.Git"
+    },
+    {
+      "name": "Google Chrome",
+      "publisher": null,
+      "source": "winget",
+      "version": "130.0.6723.92",
+      "wingetId": "Google.Chrome"
+    },
+    {
+      "name": "Hamachi",
+      "publisher": null,
+      "source": "registry",
+      "version": "2.3.0.106",
+      "wingetId": null
+    },
+    {
+      "name": "Intel(R) Graphics Command Center",
+      "publisher": null,
+      "source": "registry",
+      "version": "1.100.5",
+      "wingetId": null
+    },
+    {
+      "name": "Microsoft 365 Apps for business",
+      "publisher": null,
+      "source": "registry",
+      "version": "16.0.18129",
+      "wingetId": null
+    },
+    {
+      "name": "Microsoft Visual Studio Code",
+      "publisher": null,
+      "source": "winget",
+      "version": "1.95.1",
+      "wingetId": "Microsoft.VisualStudioCode"
+    },
+    {
+      "name": "Node.js",
+      "publisher": null,
+      "source": "winget",
+      "version": "22.11.0",
+      "wingetId": "OpenJS.NodeJS"
+    },
+    {
+      "name": "Notepad++",
+      "publisher": null,
+      "source": "winget",
+      "version": "8.7.1",
+      "wingetId": "Notepad++.Notepad++"
+    },
+    {
+      "name": "OBS Studio",
+      "publisher": null,
+      "source": "winget",
+      "version": "30.2.3",
+      "wingetId": "OBSProject.OBSStudio"
+    },
+    {
+      "name": "Postman",
+      "publisher": null,
+      "source": "winget",
+      "version": "11.18.0",
+      "wingetId": "Postman.Postman"
+    },
+    {
+      "name": "Python 3.12.7",
+      "publisher": null,
+      "source": "winget",
+      "version": "3.12.7",
+      "wingetId": "Python.Python.3.12"
+    },
+    {
+      "name": "Steam",
+      "publisher": null,
+      "source": "winget",
+      "version": "2.10.91.91",
+      "wingetId": "Valve.Steam"
+    },
+    {
+      "name": "VLC media player",
+      "publisher": null,
+      "source": "winget",
+      "version": "3.0.21",
+      "wingetId": "VideoLAN.VLC"
+    },
+    {
+      "name": "WhatsApp",
+      "publisher": null,
+      "source": "msStore",
+      "version": "2.2442.6",
+      "wingetId": "9NKSQGP7F2NH"
+    },
+    {
+      "name": "Zoom Workplace",
+      "publisher": null,
+      "source": "winget",
+      "version": "6.2.6",
+      "wingetId": "Zoom.Zoom"
+    }
+  ],
+  "createdAt": "2026-11-02T03:10:00Z",
+  "drivers": [
+    {
+      "bootCritical": true,
+      "class": "SCSIAdapter",
+      "deviceName": "Intel RST VMD Controller 9A0B",
+      "infName": "oem12.inf",
+      "provider": "Intel Corporation",
+      "version": "19.5.2.1049"
+    },
+    {
+      "bootCritical": false,
+      "class": "Display",
+      "deviceName": "NVIDIA GeForce RTX 3050 Laptop GPU",
+      "infName": "oem21.inf",
+      "provider": "NVIDIA",
+      "version": "32.0.15.6094"
+    },
+    {
+      "bootCritical": false,
+      "class": "Net",
+      "deviceName": "Intel(R) Wi-Fi 6 AX201 160MHz",
+      "infName": "oem33.inf",
+      "provider": "Intel",
+      "version": "23.80.0.2"
+    },
+    {
+      "bootCritical": false,
+      "class": "MEDIA",
+      "deviceName": "Realtek(R) Audio",
+      "infName": "oem7.inf",
+      "provider": "Realtek Semiconductor Corp.",
+      "version": "6.0.9549.1"
+    },
+    {
+      "bootCritical": false,
+      "class": "System",
+      "deviceName": "ASUS System Control Interface v3",
+      "infName": "oem41.inf",
+      "provider": "ASUSTek COMPUTER INC.",
+      "version": "3.1.38.0"
+    },
+    {
+      "bootCritical": false,
+      "class": "Display",
+      "deviceName": "Intel(R) Iris(R) Xe Graphics",
+      "infName": "oem18.inf",
+      "provider": "Intel Corporation",
+      "version": "31.0.101.5592"
+    }
+  ],
+  "files": [
+    {
+      "modified": 1724630400,
+      "path": "Downloads/ChromeSetup.exe",
+      "sizeBytes": 1380000
+    },
+    {
+      "modified": 1734134400,
+      "path": "Downloads/VSCodeUserSetup-x64-1.95.1.exe",
+      "sizeBytes": 98000000
+    },
+    {
+      "modified": 1736726400,
+      "path": "Downloads/node-v22.11.0-x64.msi",
+      "sizeBytes": 28500000
+    },
+    {
+      "modified": 1715990400,
+      "path": "Downloads/DiscordSetup.exe",
+      "sizeBytes": 112000000
+    },
+    {
+      "modified": 1731542400,
+      "path": "Downloads/DiscordSetup (1).exe",
+      "sizeBytes": 112000000
+    },
+    {
+      "modified": 1738454400,
+      "path": "Downloads/OBS-Studio-30.2.3-Windows-Installer.exe",
+      "sizeBytes": 142000000
+    },
+    {
+      "modified": 1740182400,
+      "path": "Downloads/IELTS_Writing_Task2_samples.pdf",
+      "sizeBytes": 2400000
+    },
+    {
+      "modified": 1741478400,
+      "path": "Downloads/TU_Ilmenau_admission_letter.pdf",
+      "sizeBytes": 310000
+    },
+    {
+      "modified": 1741651200,
+      "path": "Downloads/invoice-october.pdf",
+      "sizeBytes": 88000
+    },
+    {
+      "modified": 1741651200,
+      "path": "Downloads/invoice-october (1).pdf",
+      "sizeBytes": 88000
+    },
+    {
+      "modified": 1740614400,
+      "path": "Downloads/Budget 2026.xlsx",
+      "sizeBytes": 54000
+    },
+    {
+      "modified": 1740873600,
+      "path": "Downloads/pitch-deck-v3.pptx",
+      "sizeBytes": 6800000
+    },
+    {
+      "modified": 1739491200,
+      "path": "Downloads/IMG_20250214_181022.jpg",
+      "sizeBytes": 4100000
+    },
+    {
+      "modified": 1739491200,
+      "path": "Downloads/IMG_20250214_181030.jpg",
+      "sizeBytes": 3900000
+    },
+    {
+      "modified": 1740787200,
+      "path": "Downloads/IMG_20250301_093355.jpg",
+      "sizeBytes": 4300000
+    },
+    {
+      "modified": 1741564800,
+      "path": "Downloads/WhatsApp Image 2025-03-10 at 21.04.11.jpeg",
+      "sizeBytes": 210000
+    },
+    {
+      "modified": 1739059200,
+      "path": "Downloads/project-files.zip",
+      "sizeBytes": 48000000
+    },
+    {
+      "modified": 1726358400,
+      "path": "Downloads/drivers_backup.7z",
+      "sizeBytes": 310000000
+    },
+    {
+      "modified": 1741219200,
+      "path": "Downloads/screen-recording.mp4",
+      "sizeBytes": 86000000
+    },
+    {
+      "modified": 1737590400,
+      "path": "Downloads/lecture-notes.txt",
+      "sizeBytes": 12000
+    },
+    {
+      "modified": 1741737600,
+      "path": "Desktop/Screenshot 2025-03-12 101500.png",
+      "sizeBytes": 420000
+    },
+    {
+      "modified": 1741824000,
+      "path": "Desktop/Screenshot 2025-03-13 144210.png",
+      "sizeBytes": 380000
+    },
+    {
+      "modified": 1741824000,
+      "path": "Desktop/Screenshot 2025-03-13 144455.png",
+      "sizeBytes": 395000
+    },
+    {
+      "modified": 1739750400,
+      "path": "Desktop/CV_Muhammad_Hassan.docx",
+      "sizeBytes": 64000
+    },
+    {
+      "modified": 1739750400,
+      "path": "Desktop/CV_Muhammad_Hassan - Copy.docx",
+      "sizeBytes": 64000
+    },
+    {
+      "modified": 1741910400,
+      "path": "Desktop/todo.txt",
+      "sizeBytes": 2000
+    },
+    {
+      "modified": 1734134400,
+      "path": "Desktop/Visual Studio Code.lnk",
+      "sizeBytes": 2300
+    },
+    {
+      "modified": 1707350400,
+      "path": "Desktop/desktop.ini",
+      "sizeBytes": 282
+    },
+    {
+      "modified": 1741910400,
+      "path": "Desktop/Carryover notes.md",
+      "sizeBytes": 6100
+    },
+    {
+      "modified": 1735862400,
+      "path": "Desktop/song-idea.m4a",
+      "sizeBytes": 3400000
+    },
+    {
+      "modified": 1698710400,
+      "path": "Documents/University/FYP-final-report.pdf",
+      "sizeBytes": 8200000
+    },
+    {
+      "modified": 1698710400,
+      "path": "Documents/University/FYP-slides.pptx",
+      "sizeBytes": 12000000
+    },
+    {
+      "modified": 1724630400,
+      "path": "Documents/Taxes/2024-return.pdf",
+      "sizeBytes": 410000
+    },
+    {
+      "modified": 1717718400,
+      "path": "Pictures/Family/eid-2024-01.jpg",
+      "sizeBytes": 5200000
+    },
+    {
+      "modified": 1717718400,
+      "path": "Pictures/Family/eid-2024-02.jpg",
+      "sizeBytes": 5000000
+    },
+    {
+      "modified": 1700438400,
+      "path": "Videos/convocation.mp4",
+      "sizeBytes": 1900000000
+    },
+    {
+      "modified": 1741046400,
+      "path": "Documents/Projects/votewalk/README.md",
+      "sizeBytes": 8000
+    },
+    {
+      "modified": 1690070400,
+      "path": "Music/Playlist/track01.mp3",
+      "sizeBytes": 7800000
+    }
+  ],
+  "schemaVersion": 1,
+  "source": {
+    "cpu": "12th Gen Intel(R) Core(TM) i5-12500H",
+    "cpuCores": 12,
+    "disks": [
+      {
+        "bus": "NVMe",
+        "isBoot": true,
+        "model": "Micron 2400 512GB NVMe",
+        "number": 0,
+        "partitions": [
+          {
+            "driveLetter": null,
+            "encryption": "unknown",
+            "fileSystem": "",
+            "freeBytes": null,
+            "kind": "efi",
+            "label": "",
+            "number": 1,
+            "sizeBytes": 272629760
+          },
+          {
+            "driveLetter": null,
+            "encryption": "unknown",
+            "fileSystem": "",
+            "freeBytes": null,
+            "kind": "reserved",
+            "label": "",
+            "number": 2,
+            "sizeBytes": 16777216
+          },
+          {
+            "driveLetter": "C",
+            "encryption": "bitLocker",
+            "fileSystem": "NTFS",
+            "freeBytes": 74200000000,
+            "kind": "system",
+            "label": "OS",
+            "number": 3,
+            "sizeBytes": 316000000000
+          },
+          {
+            "driveLetter": "D",
+            "encryption": "none",
+            "fileSystem": "NTFS",
+            "freeBytes": 121500000000,
+            "kind": "data",
+            "label": "Data",
+            "number": 4,
+            "sizeBytes": 194800000000
+          },
+          {
+            "driveLetter": null,
+            "encryption": "unknown",
+            "fileSystem": "",
+            "freeBytes": null,
+            "kind": "recovery",
+            "label": "",
+            "number": 5,
+            "sizeBytes": 1020264448
+          }
+        ],
+        "sizeBytes": 512110190592
+      }
+    ],
+    "firmware": "uefi",
+    "gpus": [
+      "NVIDIA GeForce RTX 3050 Laptop GPU",
+      "Intel(R) Iris(R) Xe Graphics"
+    ],
+    "hostname": "HASSAN",
+    "manufacturer": "ASUSTeK COMPUTER INC.",
+    "model": "ASUS TUF Gaming F15 FX507ZC4",
+    "osBuild": "22621",
+    "osName": "Microsoft Windows 11 Pro",
+    "osVersion": "10.0.22621",
+    "ramBytes": 17179869184,
+    "secureBoot": true,
+    "tpmPresent": true
+  },
+  "toolVersion": "0.1.0",
+  "warnings": []
+}
