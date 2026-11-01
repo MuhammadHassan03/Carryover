@@ -1,9 +1,12 @@
 name: Release
 
-# Push a tag like v0.1.0 to build Carryover on Windows and publish a release.
+# Build Carryover on Windows and publish a GitHub Release.
+# Either push a tag like v0.1.0, or push to the `release` branch: the version
+# then comes from app/src-tauri/tauri.conf.json and the tag is created here.
 on:
   push:
     tags: ["v*"]
+    branches: [release]
 
 permissions:
   contents: write
@@ -36,10 +39,23 @@ jobs:
           npm ci
           npx tauri build
 
+      - name: Work out the version
+        id: ver
+        shell: pwsh
+        run: |
+          if ("${{ github.ref_type }}" -eq "tag") {
+            $tag = "${{ github.ref_name }}"
+          } else {
+            $tag = "v" + (Get-Content app/src-tauri/tauri.conf.json -Raw | ConvertFrom-Json).version
+          }
+          "tag=$tag" >> $env:GITHUB_OUTPUT
+          "version=$($tag.TrimStart('v'))" >> $env:GITHUB_OUTPUT
+          "Releasing $tag"
+
       - name: Collect release files
         shell: pwsh
         run: |
-          $version = "${{ github.ref_name }}".TrimStart("v")
+          $version = "${{ steps.ver.outputs.version }}"
           New-Item -ItemType Directory -Force dist | Out-Null
           Copy-Item target/release/carryover.exe "dist/Carryover-$version-portable.exe"
           $setup = Get-ChildItem target/release/bundle/nsis/*.exe | Select-Object -First 1
@@ -55,10 +71,17 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          $tag = "${{ github.ref_name }}"
+          $tag = "${{ steps.ver.outputs.tag }}"
           $notes = "docs/releases/$tag.md"
           if (-not (Test-Path $notes)) { $notes = $null }
-          $args = @("release", "create", $tag, "dist/*", "--title", "Carryover $tag", "--verify-tag")
+          gh release view $tag *> $null
+          if ($LASTEXITCODE -eq 0) {
+            # Same version built again: replace the files, keep the release.
+            gh release upload $tag dist/* --clobber
+            exit $LASTEXITCODE
+          }
+          $global:LASTEXITCODE = 0
+          $args = @("release", "create", $tag, "dist/*", "--title", "Carryover $tag", "--target", "${{ github.sha }}")
           if ($notes) { $args += @("--notes-file", $notes) } else { $args += "--generate-notes" }
           if ($tag -match "-") { $args += "--prerelease" }
           & gh @args
