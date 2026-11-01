@@ -68,6 +68,7 @@ export interface Recipe {
   apps: App[];
   drivers: Driver[];
   files: FileEntry[];
+  elevated?: boolean | null;
   warnings: string[];
 }
 

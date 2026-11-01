@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { api } from "./api";
 import type { DeviceSpecs, Mode, Platform, Recipe, Review } from "./types";
 import { Sidebar, type Stage } from "./components/Sidebar";
@@ -16,6 +16,11 @@ export default function App() {
   const [review, setReview] = useState<Review | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [organize, setOrganize] = useState(false);
+  // Ticket counters: only the newest request's answer is applied. Without
+  // them a slow scan could land after "Start over", or quick switch clicks
+  // could finish out of order and leave the switch and the plan disagreeing.
+  const scanTicket = useRef(0);
+  const reviewTicket = useRef(0);
 
   useEffect(() => {
     api.platform().then(setPlatform);
@@ -29,15 +34,18 @@ export default function App() {
   const demo = platform ? !platform.canScan : true;
 
   async function startScan(m: Mode) {
+    const ticket = ++scanTicket.current;
     setMode(m);
     setError(null);
     setStage("scan");
     try {
       const [r, t] = await Promise.all([api.scan(demo), m === "newDevice" ? api.demoTarget() : Promise.resolve(null)]);
+      if (ticket !== scanTicket.current) return; // started over meanwhile
       setRecipe(r);
       setTarget(t);
       setStage("recipe");
     } catch (e) {
+      if (ticket !== scanTicket.current) return;
       setError(String(e));
       setStage("mode");
     }
@@ -45,17 +53,25 @@ export default function App() {
 
   async function buildPlan() {
     if (!recipe || !mode) return;
-    setReview(await api.review(recipe, mode, target, organize));
+    const ticket = ++reviewTicket.current;
+    const r = await api.review(recipe, mode, target, organize);
+    if (ticket !== reviewTicket.current) return;
+    setReview(r);
     setStage("plan");
   }
 
   async function toggleOrganize(on: boolean) {
     if (!recipe || !mode) return;
-    setReview(await api.review(recipe, mode, target, on));
-    setOrganize(on);
+    const ticket = ++reviewTicket.current;
+    setOrganize(on); // the switch answers at once; the plan follows
+    const r = await api.review(recipe, mode, target, on);
+    if (ticket !== reviewTicket.current) return; // a newer click won
+    setReview(r);
   }
 
   function restart() {
+    scanTicket.current++;
+    reviewTicket.current++;
     setStage("mode");
     setRecipe(null);
     setReview(null);

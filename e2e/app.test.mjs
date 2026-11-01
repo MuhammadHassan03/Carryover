@@ -51,7 +51,7 @@ async function click(locator) {
   await driver.wait(until.elementIsEnabled(el), T);
   // Centre it first: WebDriver otherwise scrolls targets to the bottom edge,
   // where the sticky action bar sits on top of them.
-  await driver.executeScript("arguments[0].scrollIntoView({block: 'center'})", el);
+  await driver.executeScript("arguments[0].scrollIntoView({block: 'center', behavior: 'instant'})", el);
   await driver.sleep(120);
   await el.click();
   return el;

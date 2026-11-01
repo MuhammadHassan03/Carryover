@@ -144,6 +144,9 @@ pub struct Recipe {
     /// only, never contents). Older recipes without it still load.
     #[serde(default)]
     pub files: Vec<FileEntry>,
+    /// Whether the scan ran with administrator rights (None for old recipes).
+    #[serde(default)]
+    pub elevated: Option<bool>,
     /// Things the scanner could not read, shown to the user instead of hidden.
     pub warnings: Vec<String>,
 }

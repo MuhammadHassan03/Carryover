@@ -32,7 +32,12 @@ npm install
 npm run tauri dev      # opens the app with hot reload
 ```
 
-Run the terminal as administrator if you want TPM and Secure Boot state in the scan.
+Without admin rights the scan still works, but the TPM state is missing. The release
+app offers a "Restart as administrator" button (Windows asks for permission); in
+`npm run tauri dev`, run PowerShell as administrator instead.
+
+If the winget PowerShell module isn't installed, Carryover asks `winget.exe` (built into
+Windows 11) which apps it can reinstall and matches them to your installed programs.
 
 Release build (portable `carryover.exe` in `target/release/`, plus an installer):
 
@@ -48,7 +53,12 @@ UI only, in a browser with sample data: `cd app && npm run dev`, then open http:
 ```powershell
 cargo test -p carryover-core
 cargo clippy --workspace --all-targets -- -D warnings
+cargo run -p carryover-core --example scan_check   # real scan of this PC, with checks
 ```
+
+Clean-room Linux run (build, all tests, release build, and two WebDriver suites that drive
+the real app, including race and small-window checks): see `docker/Dockerfile`.
+Windows: `.github/workflows/ci.yml` runs the real scanner and builds `carryover.exe`.
 
 ## Layout
 

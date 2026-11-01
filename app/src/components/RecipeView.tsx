@@ -13,6 +13,7 @@ import {
   Save,
   Search,
   ShieldCheck,
+  ShieldEllipsis,
   TriangleAlert,
   Wrench,
 } from "lucide-react";
@@ -231,6 +232,21 @@ export function RecipeView({
   onNext: () => void;
 }) {
   const [saved, setSaved] = useState<string | null>(null);
+  const [adminError, setAdminError] = useState<string | null>(null);
+  const [adminBusy, setAdminBusy] = useState(false);
+  const needsAdmin = recipe.elevated === false && !demo;
+
+  async function restartAsAdmin() {
+    setAdminBusy(true);
+    setAdminError(null);
+    try {
+      await api.relaunchAsAdmin();
+    } catch (e) {
+      setAdminError(String(e).replace(/^Error: /, ""));
+    } finally {
+      setAdminBusy(false);
+    }
+  }
   const [busy, setBusy] = useState(false);
   const s = recipe.source;
   const encrypted = s.disks.some((d) => d.partitions.some((p) => p.encryption === "bitLocker"));
@@ -258,11 +274,29 @@ export function RecipeView({
       {recipe.warnings.length > 0 && (
         <div className="banner warn section">
           <TriangleAlert size={18} />
-          <ul style={{ margin: 0, paddingLeft: 16 }}>
-            {recipe.warnings.map((w) => (
-              <li key={w}>{w}</li>
-            ))}
-          </ul>
+          <div style={{ display: "grid", gap: 10, flex: 1 }}>
+            <ul style={{ margin: 0, paddingLeft: 16 }}>
+              {recipe.warnings.map((w) => (
+                <li key={w}>{w}</li>
+              ))}
+            </ul>
+            {needsAdmin && (
+              <div className="actions">
+                <button className="btn" onClick={restartAsAdmin} disabled={adminBusy}>
+                  <ShieldEllipsis size={16} aria-hidden="true" />
+                  {adminBusy ? "Waiting for Windows…" : "Restart as administrator"}
+                </button>
+                <span className="faint" style={{ fontSize: 13 }}>
+                  Windows will ask for permission. Carryover still only reads.
+                </span>
+              </div>
+            )}
+            {adminError && (
+              <p role="alert" style={{ fontSize: 13.5 }}>
+                {adminError}
+              </p>
+            )}
+          </div>
         </div>
       )}
 

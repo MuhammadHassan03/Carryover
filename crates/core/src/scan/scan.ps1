@@ -89,12 +89,32 @@ $disks = @(Get-Disk | Sort-Object Number | ForEach-Object {
 
 # ---------- apps ----------
 $apps = @()
+$winget = @()
 if (Get-Command Get-WinGetPackage -ErrorAction SilentlyContinue) {
   $apps = @(Get-WinGetPackage | ForEach-Object {
     [pscustomobject]@{ name = [string]$_.Name; version = [string]$_.InstalledVersion; publisher = $null; id = [string]$_.Id; source = [string]$_.Source }
   })
 } else {
-  [void]$warnings.Add('The winget PowerShell module is not installed, so apps were read from the registry. Most will need a manual reinstall until it is added.')
+  # No winget PowerShell module: read installed programs from the registry,
+  # then ask winget.exe (part of Windows 11) which of them it can reinstall.
+  $wingetExe = Get-Command winget.exe -ErrorAction SilentlyContinue
+  if ($wingetExe) {
+    $exportFile = Join-Path ([IO.Path]::GetTempPath()) ("carryover-winget-" + [guid]::NewGuid().ToString('N') + ".json")
+    try {
+      & $wingetExe.Source export --output $exportFile --include-versions --accept-source-agreements --disable-interactivity *> $null
+      if (Test-Path -LiteralPath $exportFile) {
+        $export = Get-Content -LiteralPath $exportFile -Raw | ConvertFrom-Json
+        $winget = @($export.Sources | ForEach-Object {
+          $src = [string]$_.SourceDetails.Name
+          $_.Packages | ForEach-Object { [pscustomobject]@{ id = [string]$_.PackageIdentifier; version = [string]$_.Version; source = $src } }
+        })
+      }
+    } catch { }
+    finally { Remove-Item -LiteralPath $exportFile -Force -ErrorAction SilentlyContinue }
+  }
+  if (-not $winget -or $winget.Count -eq 0) {
+    [void]$warnings.Add('winget is not available, so apps were read from the registry and most will need a manual reinstall.')
+  }
   $keys = @(
     'HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*',
     'HKLM:\Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*',
@@ -172,6 +192,8 @@ if ($files.Count -ge $limit) { [void]$warnings.Add('More than 20,000 files in yo
   tpm          = $tpm
   disks        = $disks
   apps         = $apps
+  winget       = @($winget)
+  isAdmin      = [bool]$isAdmin
   drivers      = $drivers
   files        = @($files)
   warnings     = @($warnings)

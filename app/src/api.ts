@@ -65,6 +65,12 @@ export const api = {
     }
   },
 
+  /** Restart elevated (UAC prompt). Resolves only if the restart was refused. */
+  async relaunchAsAdmin(): Promise<void> {
+    if (!inTauri) throw new Error("Available in the desktop app on Windows.");
+    await call("relaunch_as_admin");
+  },
+
   async saveRecipe(recipe: Recipe): Promise<string | null> {
     if (inTauri) return call("save_recipe", { recipe });
     return null;

@@ -74,8 +74,21 @@ struct RawScan {
     drivers: Vec<RawDriver>,
     #[serde(default, deserialize_with = "one_or_many")]
     files: Vec<RawFile>,
+    /// Packages from `winget export`, used when the winget module is missing.
+    #[serde(default, deserialize_with = "one_or_many")]
+    winget: Vec<RawWinget>,
+    is_admin: Option<bool>,
     #[serde(default, deserialize_with = "one_or_many")]
     warnings: Vec<String>,
+}
+
+#[derive(Deserialize)]
+struct RawWinget {
+    #[serde(default)]
+    id: String,
+    version: Option<String>,
+    #[serde(default)]
+    source: String,
 }
 
 #[derive(Deserialize)]
@@ -223,6 +236,103 @@ fn app_from_raw(a: RawApp) -> Option<App> {
     })
 }
 
+/// Lowercase letters and digits only: "Visual Studio Code" -> "visualstudiocode".
+fn compact(s: &str) -> String {
+    s.chars().filter(|c| c.is_ascii_alphanumeric()).map(|c| c.to_ascii_lowercase()).collect()
+}
+
+/// The product part of a winget id, compacted: "Microsoft.VisualStudioCode"
+/// -> "visualstudiocode", "Python.Python.3.12" -> "python312".
+fn product_of(id: &str) -> String {
+    let mut parts = id.split('.');
+    let publisher = parts.next().unwrap_or("");
+    let rest: Vec<&str> = parts.collect();
+    if rest.is_empty() { compact(publisher) } else { compact(&rest.join("")) }
+}
+
+/// Readable name for a winget id nobody matched: "Notepad++.Notepad++" ->
+/// "Notepad++", "Microsoft.PowerToys" -> "PowerToys".
+fn name_from_id(id: &str) -> String {
+    let product = id.split_once('.').map(|(_, p)| p).unwrap_or(id);
+    let mut out = String::new();
+    let mut prev_lower = false;
+    for c in product.chars() {
+        if c == '.' {
+            out.push(' ');
+            prev_lower = false;
+            continue;
+        }
+        if c.is_ascii_uppercase() && prev_lower {
+            out.push(' ');
+        }
+        prev_lower = c.is_ascii_lowercase();
+        out.push(c);
+    }
+    out.trim().to_string()
+}
+
+/// How well an installed program name fits a winget id (0 = no match).
+fn match_score(name: &str, id: &str) -> u32 {
+    let n = compact(name);
+    let product = product_of(id);
+    let full = compact(id);
+    if product.is_empty() || n.is_empty() {
+        return 0;
+    }
+    if n == product || n == full {
+        100
+    } else if n.starts_with(&full) {
+        90
+    } else if n.starts_with(&product) && product.len() >= 3 {
+        80
+    } else if product.len() >= 5 && n.contains(&product) {
+        60
+    } else {
+        0
+    }
+}
+
+/// Give registry apps the winget ids `winget export` reported, best match
+/// first, each id used once. Ids nobody matched become their own entries.
+fn attach_winget_ids(apps: &mut Vec<App>, winget: Vec<RawWinget>) {
+    let mut pairs: Vec<(u32, usize, usize)> = Vec::new();
+    for (wi, w) in winget.iter().enumerate() {
+        for (ai, a) in apps.iter().enumerate() {
+            if a.winget_id.is_none() {
+                let score = match_score(&a.name, &w.id);
+                if score > 0 {
+                    // Longer products are more specific: prefer them on ties.
+                    pairs.push((score * 100 + product_of(&w.id).len().min(99) as u32, wi, ai));
+                }
+            }
+        }
+    }
+    pairs.sort_by_key(|p| std::cmp::Reverse(p.0));
+    let mut used_w = vec![false; winget.len()];
+    let mut used_a = vec![false; apps.len()];
+    for (_, wi, ai) in pairs {
+        if used_w[wi] || used_a[ai] {
+            continue;
+        }
+        used_w[wi] = true;
+        used_a[ai] = true;
+        let w = &winget[wi];
+        apps[ai].winget_id = Some(w.id.clone());
+        apps[ai].source = if w.source.eq_ignore_ascii_case("msstore") { AppSource::MsStore } else { AppSource::Winget };
+    }
+    for (wi, w) in winget.into_iter().enumerate() {
+        if !used_w[wi] && !w.id.is_empty() && !w.id.starts_with("ARP\\") {
+            apps.push(App {
+                name: name_from_id(&w.id),
+                version: non_empty(w.version),
+                publisher: None,
+                source: if w.source.eq_ignore_ascii_case("msstore") { AppSource::MsStore } else { AppSource::Winget },
+                winget_id: Some(w.id),
+            });
+        }
+    }
+}
+
 /// Turn the scanner's JSON into specs, apps, drivers and warnings.
 pub fn parse_scan(json: &str, created_at: &str) -> Result<Recipe> {
     let raw: RawScan = serde_json::from_str(json.trim_start_matches('\u{feff}'))
@@ -266,6 +376,7 @@ pub fn parse_scan(json: &str, created_at: &str) -> Result<Recipe> {
     };
 
     let mut apps: Vec<App> = raw.apps.into_iter().filter_map(app_from_raw).collect();
+    attach_winget_ids(&mut apps, raw.winget);
     apps.sort_by_key(|a| a.name.to_lowercase());
     apps.dedup_by(|a, b| a.name.eq_ignore_ascii_case(&b.name));
 
@@ -313,6 +424,7 @@ pub fn parse_scan(json: &str, created_at: &str) -> Result<Recipe> {
         apps,
         drivers,
         files,
+        elevated: raw.is_admin,
         warnings: raw.warnings,
     })
 }
@@ -560,6 +672,53 @@ mod tests {
         cmd.args(["-c", "echo 'Access is denied' >&2; exit 1"]);
         let err = run_script(cmd, "", std::time::Duration::from_secs(5)).unwrap_err();
         assert!(err.to_string().contains("Access is denied"));
+    }
+
+    #[test]
+    fn winget_export_ids_attach_to_registry_apps() {
+        let json = r#"{
+          "apps": [
+            {"name":"Google Chrome","source":"registry"},
+            {"name":"Microsoft Visual Studio Code (User)","source":"registry"},
+            {"name":"VLC media player","source":"registry"},
+            {"name":"Git","source":"registry"},
+            {"name":"GitHub Desktop","source":"registry"},
+            {"name":"Python 3.12.7 (64-bit)","source":"registry"},
+            {"name":"7-Zip 24.08 (x64)","source":"registry"},
+            {"name":"Some Vendor Tool","source":"registry"}
+          ],
+          "winget": [
+            {"id":"Google.Chrome","source":"winget"},
+            {"id":"Microsoft.VisualStudioCode","source":"winget"},
+            {"id":"VideoLAN.VLC","source":"winget"},
+            {"id":"Git.Git","source":"winget"},
+            {"id":"GitHub.GitHubDesktop","source":"winget"},
+            {"id":"Python.Python.3.12","source":"winget"},
+            {"id":"7zip.7zip","source":"winget"},
+            {"id":"Microsoft.PowerToys","version":"0.85.1","source":"winget"},
+            {"id":"9NKSQGP7F2NH","source":"msstore"}
+          ]
+        }"#;
+        let r = parse_scan(json, "t").unwrap();
+        let id = |n: &str| r.apps.iter().find(|a| a.name == n).and_then(|a| a.winget_id.clone());
+        assert_eq!(id("Google Chrome").as_deref(), Some("Google.Chrome"));
+        assert_eq!(id("Microsoft Visual Studio Code (User)").as_deref(), Some("Microsoft.VisualStudioCode"));
+        assert_eq!(id("VLC media player").as_deref(), Some("VideoLAN.VLC"));
+        assert_eq!(id("Git").as_deref(), Some("Git.Git"), "Git must not be taken by GitHub Desktop");
+        assert_eq!(id("GitHub Desktop").as_deref(), Some("GitHub.GitHubDesktop"));
+        assert_eq!(id("Python 3.12.7 (64-bit)").as_deref(), Some("Python.Python.3.12"));
+        assert_eq!(id("7-Zip 24.08 (x64)").as_deref(), Some("7zip.7zip"));
+        assert_eq!(id("Some Vendor Tool"), None);
+        // Unmatched ids still count, with a readable name.
+        assert_eq!(id("Power Toys").as_deref(), Some("Microsoft.PowerToys"));
+        assert!(r.apps.iter().any(|a| a.winget_id.as_deref() == Some("9NKSQGP7F2NH") && a.source == AppSource::MsStore));
+        assert_eq!(r.auto_app_count(), 9);
+    }
+
+    #[test]
+    fn records_admin_state() {
+        assert_eq!(parse_scan(r#"{"isAdmin":true}"#, "t").unwrap().elevated, Some(true));
+        assert_eq!(parse_scan("{}", "t").unwrap().elevated, None);
     }
 
     #[test]

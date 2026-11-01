@@ -108,6 +108,10 @@ export function PlanView({
       setOrgBusy(false);
     }
   }
+  // While a new plan is on its way, the old one must not look current.
+  const stale =
+    orgBusy ||
+    (review.organize.moves.length > 0 && plan.steps.some((s) => s.action === "organizeFiles") !== organize);
   const [checking, setChecking] = useState(false);
   const isAi = plan.planner === "ai";
 
@@ -152,7 +156,12 @@ export function PlanView({
       </div>
 
       <div className="section">
-        <OrganizeCard preview={review.organize} files={recipe.files} on={organize} busy={orgBusy} onToggle={toggleOrganize} />
+        <OrganizeCard preview={review.organize} files={recipe.files} on={organize} busy={false} onToggle={toggleOrganize} />
+        {stale && (
+          <p className="faint" role="status" style={{ marginTop: 10, fontSize: 13.5 }}>
+            Updating the plan…
+          </p>
+        )}
       </div>
 
       {review.advice.length > 0 && (
@@ -202,7 +211,7 @@ export function PlanView({
         </section>
       )}
 
-      <section className="section" aria-labelledby="steps-h">
+      <section className={`section ${stale ? "is-stale" : ""}`} aria-labelledby="steps-h" aria-busy={stale}>
         <div className="section-head">
           <h2 id="steps-h">Steps</h2>
           {isAi ? (
@@ -210,7 +219,7 @@ export function PlanView({
               <Undo2 size={16} aria-hidden="true" /> Back to the safe plan
             </button>
           ) : (
-            <button className="btn" onClick={tryRisky} disabled={checking}>
+            <button className="btn" onClick={tryRisky} disabled={checking || stale}>
               <FlaskConical size={16} aria-hidden="true" /> {checking ? "Checking…" : "Try a risky AI plan"}
             </button>
           )}

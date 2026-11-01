@@ -918,8 +918,8 @@ button {
   bottom: 0;
   margin-top: 28px;
   padding: 14px 18px;
-  background: color-mix(in srgb, var(--paper) 88%, transparent);
-  backdrop-filter: blur(8px);
+  background: var(--surface);
+  box-shadow: 0 -8px 24px var(--paper), var(--shadow);
   border: 1px solid var(--line);
   border-radius: var(--radius-l);
   display: flex;
@@ -1120,4 +1120,10 @@ button {
 }
 .give-link:hover {
   color: var(--accent);
+}
+
+.is-stale {
+  opacity: 0.5;
+  transition: opacity 150ms var(--ease);
+  pointer-events: none;
 }

@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node app.test.mjs"
+    "test": "node app.test.mjs",
+    "explore": "node explore.test.mjs"
   },
   "dependencies": {
     "selenium-webdriver": "^4.27.0"

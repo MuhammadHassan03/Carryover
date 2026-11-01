@@ -29,6 +29,8 @@ ls -l target/release/carryover
 printf 'binary size: %s MB\n' "$(du -m target/release/carryover | cut -f1)"
 
 section "end-to-end: drive the real app over WebDriver"
-(cd e2e && npm ci --no-audit --no-fund && xvfb-run -a -s "-screen 0 1280x860x24" node app.test.mjs /work/target/release/carryover "$OUT/e2e-shots")
+(cd e2e && npm ci --no-audit --no-fund \
+  && xvfb-run -a -s "-screen 0 1280x860x24" node app.test.mjs /work/target/release/carryover "$OUT/e2e-shots" \
+  && CARRYOVER_DEMO_DELAY_MS=3000 xvfb-run -a -s "-screen 0 1280x860x24" node explore.test.mjs /work/target/release/carryover "$OUT/explore-shots")
 
 section "ALL GREEN"
