@@ -15,6 +15,9 @@ jobs:
   windows:
     name: Build and publish (Windows)
     runs-on: windows-latest
+    env:
+      # Signing turns on once the SignPath secret exists (see docs/CODE_SIGNING.md).
+      SIGNPATH_ENABLED: ${{ secrets.SIGNPATH_API_TOKEN != '' && 'true' || 'false' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -61,10 +64,42 @@ jobs:
           $setup = Get-ChildItem target/release/bundle/nsis/*.exe | Select-Object -First 1
           if (-not $setup) { throw "NSIS installer was not produced" }
           Copy-Item $setup.FullName "dist/Carryover_${version}_x64-setup.exe"
+
+      - name: Upload unsigned files for signing
+        id: unsigned
+        if: env.SIGNPATH_ENABLED == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: carryover-unsigned
+          path: dist/*.exe
+
+      - name: Sign with SignPath
+        if: env.SIGNPATH_ENABLED == 'true'
+        uses: signpath/github-action-submit-signing-request@v1
+        with:
+          api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
+          organization-id: ${{ vars.SIGNPATH_ORGANIZATION_ID }}
+          project-slug: ${{ vars.SIGNPATH_PROJECT_SLUG || 'carryover' }}
+          signing-policy-slug: ${{ vars.SIGNPATH_POLICY_SLUG || 'release-signing' }}
+          github-artifact-id: ${{ steps.unsigned.outputs.artifact-id }}
+          wait-for-completion: true
+          output-artifact-directory: dist-signed
+
+      - name: Use the signed files
+        if: env.SIGNPATH_ENABLED == 'true'
+        shell: pwsh
+        run: |
+          Copy-Item dist-signed/*.exe dist/ -Force
+          Get-ChildItem dist/*.exe | ForEach-Object { Get-AuthenticodeSignature $_.FullName | Format-List Path, Status, SignerCertificate }
+
+      - name: Checksums
+        shell: pwsh
+        run: |
           Get-ChildItem dist/*.exe | ForEach-Object {
             "{0}  {1}" -f (Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLower(), $_.Name
           } | Set-Content dist/SHA256SUMS.txt -Encoding ascii
           Get-ChildItem dist | Format-Table Name, @{n="MB";e={[math]::Round($_.Length/1MB,1)}}
+          if ($env:SIGNPATH_ENABLED -ne 'true') { "Note: files are unsigned (SignPath not set up yet)." }
 
       - name: Publish release
         shell: pwsh
